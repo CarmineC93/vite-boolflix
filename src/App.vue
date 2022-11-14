@@ -4,11 +4,14 @@ import { store } from "./store";
 
 import SearchBar from './components/SearchBar.vue'
 import AppGrid from './components/AppGrid.vue'
+import AppLoader from './components/AppLoader.vue'
+
 
 export default {
   components: {
       SearchBar, 
       AppGrid,
+      AppLoader,
 
     },
     data(){
@@ -26,10 +29,11 @@ export default {
     
 
       getMovies(){
+        this.store.loading = true;
 
         console.log(store.userQuery) 
         let apiUrlMovie = this.store.apiMovies;
-        let apiUrlTv = this.store.apiTv;
+        let apiUrlTv = this.store.apiTvShow;
 
         let urlParams = {}
         urlParams.api_key = this.store.apiKey;
@@ -41,11 +45,18 @@ export default {
             }).then((resp) => { 
               store.movies = resp.data.results;
               console.log(resp.data.results)
+
+              axios.get(apiUrlTv, {
+              params : urlParams,
+            }).then((resp) => {
+              store.tvShow = resp.data.results;
+              console.log(resp.data.results)
+            }).finally(() => {
+              this.store.loading = false;
+            })
           })
         }
-        
       }
-
     },
     created(){
 
@@ -58,7 +69,8 @@ export default {
     <SearchBar @search="getMovies"/>  
   </div>
   <div class="container">
-    <AppGrid/>
+    <AppLoader v-if="store.loading" />
+    <AppGrid v-else />
   </div>
 </template>
 
