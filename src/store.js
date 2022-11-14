@@ -8,6 +8,4 @@ export const store = reactive({
     apiKey: "eb8ebeb4acaae5bdd0b372266cd60d78",
     userQuery: "",
     loading: false,
-
-    
   });
