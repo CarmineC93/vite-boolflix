@@ -1,13 +1,19 @@
 <script>
+import AppCard from './AppCard.vue'
+
+
 export default{
     name: "AppGrid",
+    components:{
+        AppCard,
+    }
 
 }
 </script>
 
 <template>
     <div>
-
+        <AppCard/>
     </div>
 
 </template>

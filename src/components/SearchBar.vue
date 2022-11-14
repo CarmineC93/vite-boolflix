@@ -11,13 +11,14 @@ export default {
 </script>
 
 <template>
-
-    <div>
-        <label for="search">Cerca</label>
-        <input type="text" id="search" v:model="store.userQuery">
-
-        <button type="submit" @click="$emit('search')" > Cerca </button>
-    </div>
+    <header>
+        <div>
+            <label for="search">Cerca</label>
+            <input type="text" id="search" v:model="store.userQuery">
+    
+            <button type="submit" @click="$emit('search')" > Cerca </button>
+        </div>
+    </header>
 
 </template>
 
