@@ -14,7 +14,7 @@ export default {
     <header>
         <div>
             <label for="search">Cerca</label>
-            <input type="text" id="search" v:model="store.userQuery">
+            <input type="text" id="search" v-model="store.userQuery">
     
             <button type="submit" @click="$emit('search')" > Cerca </button>
         </div>
