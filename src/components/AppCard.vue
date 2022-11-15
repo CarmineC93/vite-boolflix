@@ -1,18 +1,21 @@
 <script>
+import { store } from "../store";
+
 
 export default{
     name: "AppCard",
     props: {
         video : Object,
+        //come usare solo l'object in template e trasferire poi in componente genitore?
         stars : Number,
         flag : String,
-        //mi servono singolarmente per avere lo stesso componente sia per film che per serie
         title: String,
         name: String,
     },
     data(){
         return{
-            arrayVote : this.stars
+            store,
+            imgDefault : "../assets/logo.png" 
         }
     },
 }
@@ -20,11 +23,14 @@ export default{
 
 <template>
 
-    <div>
+    <div class="card">
 
         <div class="pic">
-            <img :src="`https://image.tmdb.org/t/p/w342/${video.poster_path}`" alt="poster">
+            <img v-if="video.poster_path" :src="`https://image.tmdb.org/t/p/w342/${video.poster_path}`" alt="poster">
+            
+            <img class="coverNotFound" v-else  :scr="`${imgDefault}`">
         </div>
+
         <div class="text">
             <h5 v-if="video.title"> {{title}}</h5>
             <h5 v-else> {{name}}</h5>
@@ -37,14 +43,11 @@ export default{
                     <i class="fa-regular fa-star"></i>
                 </span>
                 <div class="full-star">
-                    <span v-for="number in this.arrayVote">
+                    <span v-for="number in this.stars">
                         <i class="fa fa-star"></i>
                     </span>
-
                 </div>
-
             </div>
-
         </div>
 
     </div>
@@ -52,24 +55,32 @@ export default{
 </template>
 
 <style lang="scss" scoped>
-.flag{
-    width: 20px;
+.card{
+
+
+
+    .pic{
+        width: 200px;
+
+        .coverNotFound{
+            width: 200px;
+            height: 100px;
+        }
+    }
+    .flag{
+        width: 20px;
+    }
+    .stars-space{
+        padding: 1rem;
+        background-color: aqua;
+         position: relative;
+        .full-star{
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            z-index: 2;
+        }
+    }
 }
 
-.stars-space{
-    padding: 1rem;
-    background-color: aqua;
-     position: relative;
-    .base-star{
-    }
-
-    .full-star{
-        position: absolute;
-        left: 1rem;
-        top: 1rem;
-        z-index: 2;
-    }
-
-
-}
 </style>

@@ -47,6 +47,7 @@ export default {
             }).then((resp) => { 
               store.movies = resp.data.results;
               console.log(resp.data.results)
+
             }).finally(() => {
               this.store.loading = false;
             })
@@ -72,16 +73,22 @@ export default {
 </script>
 
 <template>
-  <div class="container">
-    <SearchBar @search="searchAll"/>  
-  </div>
-  <div class="container">
-    <AppLoader v-if="store.loading" />
-    <AppGrid v-else />
+  <div class="wrapper">
+
+    <div class="container">
+      <SearchBar @search="searchAll"/>  
+    </div>
+      <AppLoader v-if="store.loading" />
+      <AppGrid v-else />
+
   </div>
 </template>
 
 <style lang="scss">
 @use "./styles/general.scss" as *;
+
+.wrapper{
+  background-image: linear-gradient(to left, rgb(136, 131, 131),rgb(83, 55, 55),rgb(136, 131, 131));
+}
 
 </style>

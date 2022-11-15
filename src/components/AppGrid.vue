@@ -43,8 +43,6 @@ export default{
             }
             return languageFlag
         }
-
-
     }
 }
 </script>
@@ -60,7 +58,7 @@ export default{
 
     <h2>TV SHOWS</h2>
     <div class="tv-show grid">
-        <div v-for="(show) in store.tvShow" :key="store.tvShow.id">
+        <div class="col" v-for="(show) in store.tvShow" :key="store.tvShow.id">
           <AppCard :video="show" :name="show.name" :stars="getValueStars(show.vote_average)"
           :flag="getImageUrl(getLanguageFlag(`${show.original_language}`))"  />
         </div>  
@@ -70,10 +68,15 @@ export default{
 
 <style lang="scss" scoped>
     .grid{
+        margin:1rem 2rem;
         display: flex;
-        /* debug */
-        flex-wrap: wrap;
-        background-color: cadetblue;
+        gap: 0.7rem;
+        flex-wrap: wrap; //togliendo il wrap si potrebbe impostare una galleria a scorrimento con hoverflow
+        justify-content: space-around;
 
+        .col{
+            width: calc(100% / 6);
+            ;
+        }
     }
 </style>
