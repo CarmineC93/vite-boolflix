@@ -8,6 +8,11 @@ export default{
     <h2>LOADING</h2>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+
+h2{
+    /* debug */
+    color: red;
+}
 
 </style>

@@ -26,35 +26,42 @@ export default {
 //con questa funzione si riempiono gli array di film / tv che verranno mostrati in pagina tramite v-for nelle card 
 //con la funzione la query di ricerca dell'utente verrà aggiunta alla query dell'api 
 // in questo modo la resp verrà assegnata all'array (film e tv)
-    
-
-      getMovies(){
+      searchAll(){
         this.store.loading = true;
 
         console.log(store.userQuery) 
+
         let apiUrlMovie = this.store.apiMovies;
         let apiUrlTv = this.store.apiTvShow;
 
+        //creo un oggetto vuoto le cui proprietà saranno i parametri dell'API
         let urlParams = {}
+        //prima proprietà inserita nell'oggetto (parametro richiesto)
         urlParams.api_key = this.store.apiKey;
+        //La chiamata parte se l'utente sta cercando qualcosa 
         if (this.store.userQuery){
             urlParams.query = this.store.userQuery;
-            
+            //domanda film
             axios.get(apiUrlMovie, {
               params : urlParams,
             }).then((resp) => { 
               store.movies = resp.data.results;
               console.log(resp.data.results)
-
-              axios.get(apiUrlTv, {
-              params : urlParams,
-            }).then((resp) => {
-              store.tvShow = resp.data.results;
-              console.log(resp.data.results)
             }).finally(() => {
               this.store.loading = false;
             })
-          })
+            
+            //più corretto non mettere in coda la seconda chiamata (serie) con un axios anninato, soprattutto se non è dipendente dalla prima chiamata (movie) meglio farlo in un axios indipendente dal primo con due metodi separati
+            //domanda serie
+            axios.get(apiUrlTv, {
+                params : urlParams,
+              }).then((resp) => {
+                store.tvShow = resp.data.results;
+                console.log(resp.data.results)
+              }).finally(() => {
+              //dopo le chiamate e le risposte, reinposto che il caricamento è finito
+              this.store.loading = false;
+              })  
         }
       }
     },
@@ -66,7 +73,7 @@ export default {
 
 <template>
   <div class="container">
-    <SearchBar @search="getMovies"/>  
+    <SearchBar @search="searchAll"/>  
   </div>
   <div class="container">
     <AppLoader v-if="store.loading" />
@@ -74,6 +81,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style lang="scss">
+@use "./styles/general.scss" as *;
 
 </style>

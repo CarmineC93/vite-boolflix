@@ -26,11 +26,10 @@ export default{
             let languageFlag = ""
 
             switch (language) {
-
                 case "it" : 
                 languageFlag = "../assets/italia.png";
                 break;
-                case "uk" :
+                case "en" :
                 languageFlag = "../assets/inglese.png";
                 break;
                 case "es" :
@@ -42,8 +41,6 @@ export default{
                 default:
                 languageFlag = "../assets/mondo.jpg";
             }
-
-            console.log(languageFlag)
             return languageFlag
         }
 
@@ -71,7 +68,7 @@ export default{
 
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
     .grid{
         display: flex;
         /* debug */

@@ -22,5 +22,10 @@ export default {
 
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+
+label{
+    display: none;
+}
+
 </style>
