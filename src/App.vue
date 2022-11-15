@@ -65,9 +65,6 @@ export default {
               })  
         }
       }
-    },
-    created(){
-
     }
   }
 </script>
@@ -88,7 +85,9 @@ export default {
 @use "./styles/general.scss" as *;
 
 .wrapper{
-  background-image: linear-gradient(to left, rgb(136, 131, 131),rgb(83, 55, 55),rgb(136, 131, 131));
+  background-image: linear-gradient(to left, rgb(136, 131, 131),rgb(36, 29, 29),rgba(76, 6, 6, 0.977), rgb(36, 29, 29),rgb(136, 131, 131));
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
 }
-
 </style>

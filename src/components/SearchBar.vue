@@ -37,7 +37,7 @@ header{
     justify-content: center;
     align-items: center;
     padding: 2rem 0;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.319);
 
     .searchbar{
         display: flex;
@@ -59,8 +59,9 @@ header{
     }
 
     button:hover{
-        color: rgb(175, 68, 68);
-        box-shadow: inset ;
+        color: white;
+        box-shadow: inset;
+        background-color: rgba(255, 0, 0, 0.74);
     }
 }
 
