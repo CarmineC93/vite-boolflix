@@ -33,7 +33,7 @@ export default{
         <div class="text">
             <h4 v-if="video.title"> Titolo: {{title}}</h4>
             <h4 v-else> Titolo: {{name}}</h4>
-            <h4> Titolo originale: {{video.original_title}}</h4>
+            <h4 class="title"> Titolo originale: {{video.original_title}}</h4>
             <img class="flag" :src="flag" :alt="video.original_language">
             <h4>Media Voto: {{stars}}/5</h4> 
             <div class="stars-space">
@@ -71,15 +71,17 @@ export default{
         flex-direction: column;
         gap: 1rem;
         text-align: start;
-        background-color: rgba(13, 13, 12, 0.7);
+        background-color: rgba(13, 13, 12, 0.83);
         color: white;
         width: 200px;
         height: 100%;
         padding: 1rem;
-        
+        overflow-y: hidden;
+
         .overview{
             overflow-y: scroll
         }
+
 
     }
 
