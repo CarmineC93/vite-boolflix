@@ -15,7 +15,6 @@ export default{
     data(){
         return{
             store,
-            imgDefault : "../assets/logo.png" 
         }
     },
 }
@@ -28,7 +27,7 @@ export default{
         <div class="pic">
             <img v-if="video.poster_path" :src="`https://image.tmdb.org/t/p/w342/${video.poster_path}`" alt="poster">
             
-            <img class="coverNotFound" v-else  :scr="`${imgDefault}`">
+            <img v-else class="coverNotFound" scr="/noCover.png">
         </div>
 
         <div class="text">
