@@ -15,7 +15,7 @@ export default{
     },
     methods:{
         getValueStars(voteAverage){
-            return Math.floor(voteAverage / 2);
+            return Math.round(voteAverage / 2);
         },
 
         getImageUrl(imagePath){
@@ -52,7 +52,7 @@ export default{
     <h2>MOVIES</h2>
     <hr>
     <div class="movies grid">
-        <div v-for="(movie) in store.movies" :key="store.movies.id">
+        <div class="col" v-for="(movie) in store.movies" :key="store.movies.id">
             <AppCard :video="movie" :title="movie.title" :stars="getValueStars(movie.vote_average)"
             :flag="getImageUrl(getLanguageFlag(`${movie.original_language}`))" />
         </div>
@@ -88,7 +88,8 @@ export default{
         justify-content: space-around;
 
         .col{
-            width: calc(100% / 6);
+            // width: calc(100% / 6 - 0.7rem); //è più responsive senza una width precisa
+            height: 100%;
         }
     }
 </style>
